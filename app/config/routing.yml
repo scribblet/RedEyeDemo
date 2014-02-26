@@ -1,0 +1,2 @@
+_search_settings:
+    resource: "@SavedSettingsBundle/Resources/config/routing.yml"

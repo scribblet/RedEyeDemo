@@ -1,0 +1,43 @@
+{% extends "SavedSettingsBundle::layout.html.twig" %}
+
+{% block content %}
+    <form id="searchForm" class="form-horizontal" role="form">
+        <div class="form-group">
+            <label for="inputSearchText" class="col-sm-2 control-label">Search</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" id="searchText" placeholder="Search...">
+            </div>
+            <div class="col-sm-2">
+                <select id="savedSearches">
+                </select>
+            </div>
+
+        </div>
+        {% for criteria, item in searchOptions %}
+        <div class="form-group">
+            <label for="{{ criteria }}" class="col-sm-2 control-label">Option {{ loop.index }}</label>
+            <div class="col-sm-10">
+                <select id="{{ criteria }}">
+                    {% for value in item %}
+                        <option>{{ value }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        {% endfor %}
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button id="submitSearch" type="submit" class="btn btn-primary">Search</button>
+                <button id="saveSearch" type="button" class="btn btn-info">Save Settings</button>
+            </div>
+        </div>
+    </form>
+    <div id="statusText" class="well">
+
+    </div>
+{% endblock %}
+
+{% block documentReady %}
+    {{ parent() }}
+    $('#search-form').savedSearchSettings();
+{% endblock documentReady %}
